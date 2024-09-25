@@ -23,6 +23,8 @@ function getCurrentDate(){
     return currentDate
 }
 
+
+
 module.exports = {
     verifyUserExists,
     hashWithSHA256,
