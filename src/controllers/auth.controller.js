@@ -2,7 +2,7 @@ const authModel = require('../models/auth.model')
 const authUtils = require('../utils/auth.utils')
 
 async function login_post(req,res){
-    let { password } = req.body
+    const { password } = req.body
 
     const userExists = await authUtils.verifyUserExists(password)
     

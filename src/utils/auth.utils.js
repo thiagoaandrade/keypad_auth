@@ -16,7 +16,15 @@ async function verifyUserExists(hashedPassword){
     return true
 }  
 
+function getCurrentDate(){
+    const date = new Date()
+    const currentDate = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`
+
+    return currentDate
+}
+
 module.exports = {
     verifyUserExists,
-    hashWithSHA256
+    hashWithSHA256,
+    getCurrentDate
 }
