@@ -15,6 +15,10 @@ app.get('/', (req,res) => {
     res.status(200).json({teste:true})
 })
 
+app.get('/api/brena', (req,res) => {
+    res.status(200).json({msg:"Brena boboquinha"})
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 })
