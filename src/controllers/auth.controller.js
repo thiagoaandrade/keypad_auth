@@ -5,12 +5,13 @@ async function login_post(req,res){
     const { password } = req.body
 
     const userExists = await authUtils.verifyUserExists(password)
-    
+
     if(userExists){
         const user = await authModel.get_user(password)
+        authUtils.createLog('a',user.rows[0])
         return res.status(200).json({nome: user.rows[0].username, cargo: user.rows[0].role})
     }
-
+    authUtils.createLog('ta')
     return res.status(404).json({msg: "User does not exist"})
 }
 
