@@ -60,7 +60,7 @@ function createLog(type, usuario){
     }
 
 try {
-    const data = fs.writeFileSync(`../../logs${getCurrentDate('a')}.log`, content, {flag:'a+'})
+    const data = fs.writeFileSync(`../../logs/${getCurrentDate('a')}.log`, content, {flag:'a+'})
     // arquivo escrito com sucesso
   } catch (err) {
     console.error(err)
