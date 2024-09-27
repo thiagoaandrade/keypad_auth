@@ -20,13 +20,14 @@ async function register_post(req,res){
 
     try {
         const userExists = await authUtils.verifyUserExists(password)
-        console.log(userExists)
 
         if(userExists){
+            authUtils.createLog('tr')
             return res.status(422).json({msg: "User password already exists"})
         }
 
-        await authModel.createUser(username, password, role)
+        const newUser = await authModel.createUser(username, password, role)
+        authUtils.createLog('r',newUser)
         return res.status(201).json({message: "User created successfully"})
     } catch (error) {
         console.log(error)

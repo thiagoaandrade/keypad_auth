@@ -20,8 +20,8 @@ async function verifyUserExists(hashedPassword){
 function getCurrentDate(type){
     /*
     Values for type:
-        l: Log
-        a: Arquivo
+        l: Conteúdo do log
+        a: Nome do arquivo
     */
     const date = new Date()
     let currentDate = ""
@@ -47,6 +47,7 @@ function createLog(type, usuario){
         a:  Acesso
         ta: Tentativa de acesso
         r:  Registro
+        tr: Tentativa de registro
     */
 
     let content = ''
@@ -56,11 +57,13 @@ function createLog(type, usuario){
     }else if(type === 'ta'){
         content = `${getCurrentDate('l')} - ${getCurrentHour()} - Tentativa de acesso com falha\n`
     }else if(type === 'r'){
-
+        content = `${getCurrentDate('l')} - ${getCurrentHour()} - Realizado o registro do(a) ${usuario.role} ${usuario.username}\n`
+    }else if(type === 'tr'){
+        content = `${getCurrentDate('l')} - ${getCurrentHour()} - Tentativa de registro com falha`
     }
 
 try {
-    const data = fs.writeFileSync(`../../logs/${getCurrentDate('a')}.log`, content, {flag:'a+'})
+    const data = fs.writeFileSync(`logs/${getCurrentDate('a')}.log`, content, {flag:'a+'})
     // arquivo escrito com sucesso
   } catch (err) {
     console.error(err)
